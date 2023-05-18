@@ -11,6 +11,7 @@ const Board = () => {
   const [winningSquares, setWinningSquares] = useState([]);
   const [countwinplayerO, setCountwinplayerO] = useState(0);
   const [countwinplayerX, setCountwinplayerX] = useState(0);
+  const [isEasy, setIsEasy] = useState(true)
 
   const winnerCombination = [
     [0, 1, 2],
@@ -23,8 +24,6 @@ const Board = () => {
     [2, 4, 6],
   ];
 
- 
-
   const checkEmpty = (board) => {
     for (let i = 0; i < board.length; i++) {
       if (board[i] === null) {
@@ -33,9 +32,7 @@ const Board = () => {
     }
     return true; // All cells are filled
   };
-  
 
-  
   const winnerCheck = (board) => {
     for (let i = 0; i < winnerCombination.length; i++) {
       const [a, b, c] = winnerCombination[i];
@@ -43,28 +40,26 @@ const Board = () => {
         return board[a]; // Return the winning player's symbol
       }
     }
-  
+
     if (checkEmpty(board)) {
       return "tie"; // It's a tie
     }
-  
+
     return null; // No winner yet
   };
 
-
   const scores = {
-    X:-1,
-    O:1,
-    tie:0
-  }
-  
-  
+    X: -1,
+    O: 1,
+    tie: 0,
+  };
+
   const minmax = (board, depth, isMaximizing) => {
     let result = winnerCheck(board);
     if (result !== null) {
       return scores[result];
     }
-  
+
     if (isMaximizing) {
       let bestScore = -Infinity;
       for (let i = 0; i < board.length; i++) {
@@ -89,17 +84,11 @@ const Board = () => {
       return bestScore;
     }
   };
-  
-  
 
-  
-
-  
-    
   const bestMove = () => {
     let bestScore = -Infinity;
     let bestMoveIndex = null;
-  
+
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] === null) {
         const newArr = [...arr]; // Create a copy of the board array
@@ -108,14 +97,26 @@ const Board = () => {
         if (score > bestScore) {
           bestScore = score;
           bestMoveIndex = i;
-        } 
+        }
       }
     }
-  
+
     return bestMoveIndex;
   };
-  
-  const iswinner = winnerCheck(arr)
+
+  const randomMove = ()=>{
+    let emptySpot = []
+    for(let i = 0; i<arr.length; i++){
+      if(arr[i]==null){
+         emptySpot.push(i)
+      }
+    }
+
+    const random = Math.floor(Math.random()*emptySpot.length)
+    return emptySpot[random]
+  }
+
+  const iswinner = winnerCheck(arr);
 
   useEffect(() => {
     if (iswinner) {
@@ -125,9 +126,14 @@ const Board = () => {
       setWinningSquares(iswinner);
       setIsgameover(true);
     } else if (!againstHumanPlayer && isComputerTurn) {
-      console.log("computers turn")
+      console.log("computers turn");
       const newArr = [...arr];
-      newArr[bestMove()] = isX;
+      if(isEasy){
+        newArr[randomMove()] = isX
+      }else{
+        newArr[bestMove()] = isX;
+
+      }
       setArr(newArr);
       setIsX(isX === "X" ? "O" : "X");
       setIsComputerTurn(false);
@@ -148,8 +154,7 @@ const Board = () => {
     setIsComputerTurn(false);
     setArr(Array(9).fill(null));
     setWinningSquares([]);
-    setIsX("X") 
-    
+    setIsX("X");
   };
 
   const tie = () => {
@@ -157,6 +162,15 @@ const Board = () => {
     return false;
   };
 
+  const easyClick = ()=>{
+    setIsEasy(true)
+    setAgainstHumanPlayer(false)
+  }
+
+  const hardClick = ()=>{
+    setIsEasy(false)
+    setAgainstHumanPlayer(false)
+  }
   return (
     <div>
       <div className="board">
@@ -218,9 +232,13 @@ const Board = () => {
         <button onClick={() => setAgainstHumanPlayer(true)}>
           2<PersonIcon />
         </button>
-        <button onClick={() => setAgainstHumanPlayer(false)}>
-          1<PersonIcon />
-        </button>
+        <div class="dropdown">
+          <button class="dropbtn">1 <PersonIcon /></button>
+          <div class="dropdown-content">
+            <button onClick={easyClick} >Easy</button>
+            <button onClick={hardClick}>Hard</button>
+          </div>
+        </div>
       </div>
       {iswinner && (
         <div>
