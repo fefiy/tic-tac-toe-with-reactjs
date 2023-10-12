@@ -204,7 +204,6 @@ const Board = () => {
     setIsX("X");
   };
 
-
   const easyClick = () => {
     setIsEasy(true);
     setAgainstHumanPlayer(false);
