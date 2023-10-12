@@ -1,101 +1,18 @@
-.App {
+
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App{
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 60vh;
-  margin-top: 10vh;
-}
-.board{
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 20px;
-}
-.board-row{
-  display: flex;
-  flex-direction: row;
-}
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  background-color: whitesmoke;
 
-.square{
-  min-width: 100px;
-  min-height: 100px;
-  border-bottom: 2px solid blue;
-  border-right: 2px solid blue;
-  align-items: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: brown;
-}
-.square p{
-  transition: transform 0.15s ease-out;
-  font-weight: 600;
-  font-size: 20px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.square .p-active{
-  transform: scale(1.7);
-}
-.board-row .square:last-child{
-  border-right: none;
-}
-
-.board-row:last-child .square{
-  border-bottom: none;
-}
-
-.winning-square p {
-  transform: scale(2.3);
-  color: green;
-  font-weight: 700;
-}
-
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  /* min-width: 160px; */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content div {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-
-button{
-  cursor: pointer;
-}
-button:hover{
-  background-color: bisque;
-  cursor: pointer;
 }

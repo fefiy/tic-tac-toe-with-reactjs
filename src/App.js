@@ -1,19 +1,11 @@
-import './App.css';
-import Board from './Board';
-import { useState } from 'react';
-
+import "./App.css";
+import Board from "./components/board/Board";
+import { useState } from "react";
 
 function App() {
-
-
   return (
     <div className="App">
-     
-        
-
-    
-        <Board/>
-      
+     <Board/>
     </div>
   );
 }

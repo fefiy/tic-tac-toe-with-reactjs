@@ -1,0 +1,48 @@
+.square{
+    min-width: 100px;
+    min-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    border-bottom: 2px solid rgba(234, 228, 228, 0.5);
+    border-right: 2px solid rgba(234, 228, 228, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:last-child{
+      border-right: none;
+    }
+    p{
+        transition: transform 0.15s ease-out;
+        font-weight:600;
+        font-size: 5em;
+      }
+      .p-active{
+        transform: scale(1.1);
+      }
+    .x-sq{
+        color: orange;
+    }
+    .o-sq{
+     color: rgb(109, 167, 243)
+    }
+  }
+ .win{
+  pointer-events: none;
+ }
+ .winning-square{
+  // background-color: rgb(208, 255, 0);
+  .x-sq{
+    color:whitesmoke;
+}
+.o-sq{
+  color: whitesmoke;
+}
+ }
+
+ .winning-square.x-square{
+background-color: orange;
+ }
+ .winning-square.y-square{
+  background-color:rgb(109, 167, 243);
+   }
