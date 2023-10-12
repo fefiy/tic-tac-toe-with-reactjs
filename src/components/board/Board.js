@@ -220,8 +220,9 @@ const Board = () => {
   };
   return (
     <div className="container">
+      <div className="turn-noti-cont">
+      <h4>select round</h4>
       <div className="turn-selection">
-        <h4>select round</h4>
         <div
           className={turns === 1 && "active-turn"}
           onClick={() => setTurns(1)}>
@@ -242,6 +243,7 @@ const Board = () => {
           onClick={() => setTurns(7)}>
           7
         </div>
+      </div>
       </div>
       <div className="board-cont">
         <div className="turn-notification">
