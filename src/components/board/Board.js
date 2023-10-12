@@ -204,10 +204,6 @@ const Board = () => {
     setIsX("X");
   };
 
-  const tie = () => {
-    if (!iswinner && !arr.includes(null)) return true;
-    return false;
-  };
 
   const easyClick = () => {
     setIsEasy(true);
