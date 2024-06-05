@@ -3,7 +3,6 @@ import Square from "../square/Square";
 import PersonIcon from "@mui/icons-material/Person";
 import "./board.scss";
 import BasicMenu from "../BasicMenu";
-// import BasicModal from "../Modal";
 import Confetti from "../confetti/Confetti";
 import Modal from "../modal/Modal";
 
@@ -44,34 +43,34 @@ const Board = () => {
   const checkEmpty = (board) => {
     for (let i = 0; i < board.length; i++) {
       if (board[i] === null) {
-        return false; // There is an empty cell
+        return false; 
       }
     }
-    return true; // All cells are filled
+    return true; 
   };
 
   const winnerCheckArr = (board) => {
     for (let i = 0; i < winnerCombination.length; i++) {
       const [a, b, c] = winnerCombination[i];
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        return [board[a], a, b, c]; // Return the winning player's symbol
+        return [board[a], a, b, c]; 
       }
     }
-    return null; // No winner yet
+    return null; 
   };
 
   const winnerCheck = (board) => {
     for (let i = 0; i < winnerCombination.length; i++) {
       const [a, b, c] = winnerCombination[i];
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        return board[a]; // Return the winning player's symbol
+        return board[a];
       }
     }
 
     if (checkEmpty(board)) {
-      return "tie"; // It's a tie
+      return "tie"; 
     }
-    return null; // No winner yet
+    return null;
   };
 
   const scores = {
@@ -90,9 +89,9 @@ const Board = () => {
       let bestScore = -Infinity;
       for (let i = 0; i < board.length; i++) {
         if (board[i] === null) {
-          const newBoard = [...board]; // Create a copy of the board array
-          newBoard[i] = "O"; // Set the current move as "O"
-          let score = minmax(newBoard, depth + 1, false); // Evaluate the score using the copied board
+          const newBoard = [...board]; 
+          newBoard[i] = "O"; 
+          let score = minmax(newBoard, depth + 1, false); 
           bestScore = Math.max(score, bestScore);
         }
       }
@@ -101,9 +100,9 @@ const Board = () => {
       let bestScore = Infinity;
       for (let i = 0; i < board.length; i++) {
         if (board[i] === null) {
-          const newBoard = [...board]; // Create a copy of the board array
-          newBoard[i] = "X"; // Set the current move as "X"
-          let score = minmax(newBoard, depth + 1, true); // Evaluate the score using the copied board
+          const newBoard = [...board]; 
+          newBoard[i] = "X"; 
+          let score = minmax(newBoard, depth + 1, true); 
           bestScore = Math.min(score, bestScore);
         }
       }
@@ -117,9 +116,9 @@ const Board = () => {
 
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] === null) {
-        const newArr = [...arr]; // Create a copy of the board array
-        newArr[i] = "O"; // Set the current move as "O"
-        let score = minmax(newArr, 0, false); // Evaluate the score using the copied board
+        const newArr = [...arr]; 
+        newArr[i] = "O"; 
+        let score = minmax(newArr, 0, false); 
         if (score > bestScore) {
           bestScore = score;
           bestMoveIndex = i;
@@ -148,7 +147,7 @@ const Board = () => {
     if (iswinner) {
       iswinner === "O"
         ? setCountwinplayerO(countwinplayerO + 1)
-        : setCountwinplayerX(countwinplayerX + 1);
+        : iswinner==="X" && setCountwinplayerX(countwinplayerX + 1) 
       if (winnerSquare) {
         setWinningSquares(winnerSquare);
       }
